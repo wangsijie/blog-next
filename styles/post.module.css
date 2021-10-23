@@ -1,0 +1,9 @@
+.container {
+  padding: 0.5rem 0.5rem;
+}
+
+.post {
+  min-height: 20rem;
+  margin: 0 auto;
+  max-width: 800px;
+}
