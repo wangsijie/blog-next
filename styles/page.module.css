@@ -1,0 +1,17 @@
+.container {
+  padding: 0.5rem 0.5rem;
+}
+
+.page {
+  min-height: 20rem;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.page li {
+  margin-bottom: 8px;
+}
+
+.page li a {
+  color: #f92040;
+}
