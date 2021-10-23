@@ -44,6 +44,3 @@ jobs:
         tags: ghcr.io/${{ github.repository_owner }}/blog:latest
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache
-
-    - name: deploy
-      run: curl ${{ secrets.DEPLOY_HOOK_URI }}
