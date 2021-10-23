@@ -1,9 +1,13 @@
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import * as fs from "fs";
 import * as path from "path";
 import showdown from "showdown";
 import showdownHighlight from "showdown-highlight";
+import { exec as execCallback } from "child_process";
+import { promisify } from 'util';
+import dayjs from 'dayjs';
 import Footer from "../../components/footer";
 import Header from "../../components/header";
 import styles from "../../styles/post.module.css";
@@ -11,9 +15,11 @@ import styles from "../../styles/post.module.css";
 interface Props {
   title: string;
   html: string;
+  createdAt: string;
+  category: string;
 }
 
-const Post: NextPage<Props> = ({ title, html }) => {
+const Post: NextPage<Props> = ({ title, html, createdAt, category }) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -22,6 +28,15 @@ const Post: NextPage<Props> = ({ title, html }) => {
       </Head>
       <Header />
       <div className={styles.post}>
+        <div className={styles.meta}>
+          <div className={styles.time}>{createdAt}</div>
+          <div className={styles.spacer} />
+          <div className={styles.category}>
+            <Link href={`/${category}`}>
+              <a>{category}</a>
+            </Link>
+          </div>
+        </div>
         <div
           className="markdown-body"
           dangerouslySetInnerHTML={{ __html: html }}
@@ -34,7 +49,7 @@ const Post: NextPage<Props> = ({ title, html }) => {
 
 export default Post;
 
-export const getStaticProps: GetStaticProps = (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   const converter = new showdown.Converter({
     tables: true,
     extensions: [showdownHighlight({ pre: true })],
@@ -52,17 +67,22 @@ export const getStaticProps: GetStaticProps = (context) => {
     return { notFound: true };
   }
 
-  const content = fs.readFileSync(
-    path.join(process.cwd(), "content", folder, `${name}.md`),
-    { encoding: "utf-8" }
-  );
+  const pathName = path.join(process.cwd(), "content", folder, `${name}.md`);
+  const content = fs.readFileSync(pathName, { encoding: "utf-8" });
   const html = converter.makeHtml(content);
-  const title = content.split('\n').find(line => /^#\s/.test(line));
+  const title = content.split("\n").find((line) => /^#\s/.test(line));
+
+  const exec = promisify(execCallback);
+  const createdAt = await exec(
+    `git log --diff-filter=A --follow --format=%aD -1 -- ${pathName}`
+  );
 
   return {
     props: {
-      title: title ? title.replace(/^#\s/, '') : name,
+      title: title ? title.replace(/^#\s/, "") : name,
       html,
+      createdAt: dayjs(createdAt.stdout).format('YYYY-MM-DD'),
+      category: folder,
     },
   };
 };
