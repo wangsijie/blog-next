@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from "../styles/footer.module.css";
 
 export default function Footer() {
@@ -8,12 +9,26 @@ export default function Footer() {
         <a href="mailto:melts_gofer_0s@icloud.com">melts_gofer_0s@icloud.com</a>
       </p>
       <p>
+        <Link href="/tech">tech</Link>
+        {' · '}
+        <Link href="/read">read</Link>
+        {' · '}
+        <Link href="/about">about</Link>
+        {' · '}
         <a
           href="https://github.com/wangsijie"
           target="_blank"
           rel="noopener noreferrer"
         >
           GitHub
+        </a>
+        {' · '}
+        <a
+          href="https://gist.github.com/wangsijie"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          gist
         </a>
       </p>
       <p>
