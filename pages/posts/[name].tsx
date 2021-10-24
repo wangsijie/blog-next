@@ -6,8 +6,8 @@ import * as path from "path";
 import showdown from "showdown";
 import showdownHighlight from "showdown-highlight";
 import { exec as execCallback } from "child_process";
-import { promisify } from 'util';
-import dayjs from 'dayjs';
+import { promisify } from "util";
+import dayjs from "dayjs";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
 import styles from "../../styles/post.module.css";
@@ -73,15 +73,20 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const title = content.split("\n").find((line) => /^#\s/.test(line));
 
   const exec = promisify(execCallback);
-  const createdAt = await exec(
-    `git log --diff-filter=A --follow --format=%aD -1 -- ${pathName}`
+  const createdAt = dayjs(
+    (
+      await exec(
+        `git log --diff-filter=A --follow --format=%aD -1 -- ${pathName}`
+      )
+    ).stdout
   );
 
   return {
     props: {
       title: title ? title.replace(/^#\s/, "") : name,
       html,
-      createdAt: dayjs(createdAt.stdout).format('YYYY-MM-DD'),
+      // posts before 2021-10-24 were migrated
+      createdAt: createdAt.isBefore(dayjs('2021-10-24')) ? 'archived' : createdAt.format('YYYY-MM-DD'),
       category: folder,
     },
   };
