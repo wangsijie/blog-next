@@ -1,0 +1,25 @@
+.about {
+  margin-top: 40px;
+}
+
+.line {
+  display: flex;
+  align-items: center;
+}
+
+.coin {
+  font-size: 14px;
+  font-weight: 600;
+  margin-left: 5px;
+  width: 65px;
+}
+
+.coinSub {
+  color: rgb(128, 138, 157);
+  font-size: 14px;
+  margin-left: 8px;
+}
+
+.address {
+  margin-left: 8px;
+}

@@ -11,14 +11,16 @@ import dayjs from "dayjs";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import styles from "../styles/page.module.css";
+import About from "../components/about";
 
 interface Props {
   title: string;
   posts?: { url: string; title: string }[];
   html?: string;
+  name?: string;
 }
 
-const Page: NextPage<Props> = ({ posts, title, html }) => {
+const Page: NextPage<Props> = ({ posts, title, html, name }) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -44,6 +46,7 @@ const Page: NextPage<Props> = ({ posts, title, html }) => {
             dangerouslySetInnerHTML={{ __html: html }}
           ></div>
         )}
+        {name === 'about' && <About />}
       </div>
       <Footer />
     </div>
@@ -73,8 +76,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const title = content.split("\n").find((line) => /^#\s/.test(line));
     return {
       props: {
-        title: title ? title.replace(`^#\s`, "") : name,
+        title: title ? title.replace(/^#\s/, "") : name,
         html,
+        name,
       },
     };
   }
