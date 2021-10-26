@@ -107,7 +107,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       title: name,
       posts: posts
         .filter((post) => post.title)
-        .sort((a, b) => a.createdAt.unix() - b.createdAt.unix())
+        .sort((a, b) => b.createdAt.unix() - a.createdAt.unix())
         .map((post) => ({
           title: post.title!.replace(/^#\s/, ""),
           url: post.url,
