@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        fetch-deps: 0
+        fetch-depth: 0
 
     - name: Cache Docker layers
       uses: actions/cache@v2
