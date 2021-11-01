@@ -26,8 +26,16 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-buildx-
     
+    - uses: wangsijie/setup-v2ray@v1
+      with:
+        config-base64: ${{ secrets.V2RAY_CONFIG }}
+    
     - name: Login to registry
       uses: docker/login-action@v1
+      env:
+        http_proxy: http://127.0.0.1:1080
+        https_proxy: http://127.0.0.1:1080
+        all_proxy: socks5://127.0.0.1:1081
       with:
         registry: registry.cn-shanghai.aliyuncs.com
         username: ${{ secrets.CR_USERNAME }}
@@ -40,6 +48,10 @@ jobs:
     - name: Build and push
       id: docker_build
       uses: docker/build-push-action@v2
+      env:
+        http_proxy: http://127.0.0.1:1080
+        https_proxy: http://127.0.0.1:1080
+        all_proxy: socks5://127.0.0.1:1081
       with:
         context: ./
         push: true
