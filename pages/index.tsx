@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Wang Sijie</title>
+        <title>我爱平铺</title>
         <meta name="description" content="Personal site for Wang Sijie" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
