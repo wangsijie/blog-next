@@ -257,13 +257,13 @@ The Orbit Model[6] 是近期异军突起的社区目标管理 SaaS 服务 orbit.
 
 ## References
 
-[1] 开源项目和商业公司之间的关系: https://github.com/flossway/flossway/discussions/2
-[2] 《企业的人性面》: https://book.douban.com/subject/27125968/
-[3] 《Why Contributors Stay and Grow》: https://www.bilibili.com/video/BV1Tg411K7KS/
-[4] 生产力是不可衡量的: https://martinfowler.com/bliki/CannotMeasureProductivity.html
-[5] ASF 成熟度模型: https://community.apache.org/apache-way/apache-project-maturity-model.html
-[6] The Orbit Model: https://orbitmodel.com/
-[7] 《社区运营的艺术》: https://book.douban.com/subject/26976995/
-[8] 《People Powered》: https://book.douban.com/subject/35531548/
-[9] 《开放式组织》: https://book.douban.com/subject/26894636
-[10] 《协同》: https://book.douban.com/subject/34834429/
+1. 开源项目和商业公司之间的关系: https://github.com/flossway/flossway/discussions/2
+2. 《企业的人性面》: https://book.douban.com/subject/27125968/
+3. 《Why Contributors Stay and Grow》: https://www.bilibili.com/video/BV1Tg411K7KS/
+4. 生产力是不可衡量的: https://martinfowler.com/bliki/CannotMeasureProductivity.html
+5. ASF 成熟度模型: https://community.apache.org/apache-way/apache-project-maturity-model.html
+6. The Orbit Model: https://orbitmodel.com/
+7. 《社区运营的艺术》: https://book.douban.com/subject/26976995/
+8. 《People Powered》: https://book.douban.com/subject/35531548/
+9. 《开放式组织》: https://book.douban.com/subject/26894636
+10. 《协同》: https://book.douban.com/subject/34834429/
