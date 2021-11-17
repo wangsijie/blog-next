@@ -52,6 +52,11 @@ jobs:
         http_proxy: http://127.0.0.1:1080
         https_proxy: http://127.0.0.1:1080
         all_proxy: socks5://127.0.0.1:1081
+        TEMP_OSS_AK: ${{ secrets.TEMP_OSS_AK }}
+        TEMP_OSS_SK: ${{ secrets.TEMP_OSS_SK }}
+        TEMP_OSS_BUCKET: ${{ secrets.TEMP_OSS_BUCKET }}
+        TEMP_OSS_ENDPOINT: ${{ secrets.TEMP_OSS_ENDPOINT }}
+        TEMP_OSS_PREFIX: ${{ secrets.TEMP_OSS_PREFIX }}
       with:
         context: ./
         push: true
