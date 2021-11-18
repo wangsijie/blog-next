@@ -1,10 +1,11 @@
-import type { NextPage, NextPageContext } from "next";
+import type { NextPage } from "next";
 import Head from "next/head";
 import Aes from "../components/aes";
 import Note from "../components/note";
 import RandomString from "../components/random-string";
 import UploadFile from "../components/upload-file";
 import styles from "../styles/tool.module.css";
+import { getSecret } from "../utils/secrets";
 
 interface Props {
   oss: {
@@ -38,11 +39,11 @@ export function getStaticProps() {
   return {
     props: {
       oss: {
-        ak: process.env.TEMP_OSS_AK,
-        sk: process.env.TEMP_OSS_SK,
-        bucket: process.env.TEMP_OSS_BUCKET,
-        endpoint: process.env.TEMP_OSS_ENDPOINT,
-        prefix: process.env.TEMP_OSS_PREFIX,
+        ak: getSecret("TEMP_OSS_AK"),
+        sk: getSecret("TEMP_OSS_SK"),
+        bucket: getSecret("TEMP_OSS_BUCKET"),
+        endpoint: getSecret("TEMP_OSS_ENDPOINT"),
+        prefix: getSecret("TEMP_OSS_PREFIX"),
       },
     },
   };
