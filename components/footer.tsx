@@ -1,34 +1,53 @@
-import Link from 'next/link';
+import Link from "next/link";
+import Image from "next/image";
 import styles from "../styles/footer.module.css";
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
+      <div className={styles.icons}>
+        <Link href="mailto:melts_gofer_0s@icloud.com" passHref>
+          <a>
+            <Image
+              src="/icons/mail.png"
+              width={24}
+              height={24}
+              alt="melts_gofer_0s@icloud.com"
+            />
+          </a>
+        </Link>
+        <Link href="https://github.com/wangsijie" passHref>
+          <a target="_blank" rel="noopener noreferrer">
+            <Image
+              src="/icons/github.png"
+              width={24}
+              height={24}
+              alt="GitHub"
+            />
+          </a>
+        </Link>
+        <Link href="/about" passHref>
+          <a>
+            <Image
+              src="/icons/about.png"
+              width={24}
+              height={24}
+              alt="About"
+            />
+          </a>
+        </Link>
+      </div>
       <p>
-        contact:{" "}
-        <a href="mailto:melts_gofer_0s@icloud.com">melts_gofer_0s@icloud.com</a>
-      </p>
-      <p>
-        <Link href="/tech">tech</Link>
-        {' · '}
-        <Link href="/read">read</Link>
-        {' · '}
-        <Link href="/about">about</Link>
-        {' · '}
-        <a
-          href="https://github.com/wangsijie"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          GitHub
-        </a>
-        {' · '}
+        <Link href="/tech">#tech</Link>
+        {" · "}
+        <Link href="/read">#read</Link>
+        {" · "}
         <a
           href="https://gist.github.com/wangsijie"
           target="_blank"
           rel="noopener noreferrer"
         >
-          gist
+          #gist
         </a>
       </p>
       <p>
