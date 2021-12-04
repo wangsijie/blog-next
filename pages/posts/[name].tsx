@@ -8,6 +8,7 @@ import showdownHighlight from "showdown-highlight";
 import { exec as execCallback } from "child_process";
 import { promisify } from "util";
 import dayjs from "dayjs";
+import { Giscus } from "@giscus/react";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
 import styles from "../../styles/post.module.css";
@@ -41,6 +42,16 @@ const Post: NextPage<Props> = ({ title, html, createdAt, category }) => {
           className="markdown-body"
           dangerouslySetInnerHTML={{ __html: html }}
         ></div>
+      </div>
+      <div className={styles.comments}>
+        <Giscus
+          repo="wangsijie/blog-next"
+          repoId="R_kgDOGQ4q6Q"
+          mapping="title"
+          reactionsEnabled="1"
+          emitMetadata="0"
+          theme="preferred_color_scheme"
+        />
       </div>
       <Footer />
     </div>
@@ -86,7 +97,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
       title: title ? title.replace(/^#\s/, "") : name,
       html,
       // posts before 2021-10-24 were migrated
-      createdAt: createdAt.isBefore(dayjs('2021-10-24')) ? 'archived' : createdAt.format('YYYY-MM-DD'),
+      createdAt: createdAt.isBefore(dayjs("2021-10-24"))
+        ? "archived"
+        : createdAt.format("YYYY-MM-DD"),
       category: folder,
     },
   };
