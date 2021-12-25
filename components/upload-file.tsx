@@ -51,7 +51,7 @@ const UploadFile = ({ ak, sk, bucket, endpoint, prefix }: Props) => {
     setUrl(url);
     setLoading(false);
     setProgress(0);
-    axios.post("/api/notify", { text: url });
+    axios.post("/api/notify", { text: encodeURI(url) });
   };
 
   return (
