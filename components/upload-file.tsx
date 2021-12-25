@@ -1,4 +1,5 @@
 import OSS from "ali-oss";
+import axios from "axios";
 import { ChangeEventHandler, useState } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
 import Random from "readableuuid";
@@ -46,9 +47,11 @@ const UploadFile = ({ ak, sk, bucket, endpoint, prefix }: Props) => {
         },
       }
     );
-    setUrl(`https://${result.bucket}.${endpoint}/${result.name}`);
+    const url = `https://${result.bucket}.${endpoint}/${result.name}`;
+    setUrl(url);
     setLoading(false);
     setProgress(0);
+    axios.post("/api/notify", { text: url });
   };
 
   return (
